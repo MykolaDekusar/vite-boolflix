@@ -1,9 +1,9 @@
 <script>
-import MainApp from './components/MainApp.vue',
+import SearchBar from './SearchBar.vue',
 export default {
     components:{
-        MainApp,
-    }, 
+        SearchBar,
+    },   
 }
 
 </script>
