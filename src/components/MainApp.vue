@@ -1,6 +1,8 @@
 <script>
 import SearchBar from './SearchBar.vue';
 import FoundMovies from './FoundMovies.vue'
+import FoundTv from './FoundTv.vue'
+import AppLoader from './AppLoader.vue'
 import {store} from '../store.js';
 import axios from 'axios';
 export default {
@@ -13,7 +15,9 @@ export default {
     },
     components:{
         SearchBar,
-        FoundMovies
+        FoundMovies,
+        AppLoader,
+        FoundTv,
     },
     
     methods:{
@@ -25,7 +29,7 @@ export default {
                     language:this.store.selectedLanguage,
                 }
             }).then(results =>{
-                this.store.foundMovies=[];
+                this.store.foundMovies=[];//resetting search
                 for(let i =0; i< results.data.results.length;i++ ){
                     const temp = results.data.results[i];
                     this.store.foundMovies.push({
@@ -33,20 +37,57 @@ export default {
                         originalTitle:temp.original_title, 
                         originalLanguage:temp.original_language, 
                         averageVote:temp.vote_average,
+                        imagePath:temp.poster_path,
                         });
-                    }console.log(this.store.foundMovies);
+                }
+                    this.found=true;
+            })},
+            searchTv(){
+            axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
+                params: {
+                    api_key:this.store.apiSettings.api_Key,
+                    language:this.store.selectedLanguage,
+                    query:this.store.searchInput,
+                }
+            }).then(results =>{
+                this.store.foundTv=[];//resetting search
+                for(let i =0; i< results.data.results.length;i++ ){
+                    const temp = results.data.results[i];
+                    this.store.foundTv.push({
+                        title:temp.name,
+                        originalTitle:temp.original_name, 
+                        originalLanguage:temp.original_language, 
+                        averageVote:temp.vote_average,
+                        imagePath:temp.poster_path,
+                        });
+                }
                     this.found=true;
             })},
     }
 }
-
 </script>
 
 <template>
-<SearchBar @cerca="searchMovies"/>
-<FoundMovies v-if="found"/>
+<SearchBar @cercaFilm="searchMovies" @cercaTv="searchTv"/>
+<div class="media" v-show="found">
+    <div class="film">
+        <FoundMovies/>
+    </div>
+    <div class="serieTv">
+        <FoundTv/>
+    </div>
+    
+</div>
+
+<!-- <AppLoader v-else /> -->
 </template>
 
-<style>
+<style scoped>
+.media {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    
+}
 
 </style>

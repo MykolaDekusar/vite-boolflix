@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-<MainApp/>
+<MainApp v-cloak/>
 </template>
 
 <style>
