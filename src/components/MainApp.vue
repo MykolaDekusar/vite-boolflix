@@ -1,8 +1,7 @@
 <script>
 import SearchBar from './SearchBar.vue';
-import FoundMovies from './FoundMovies.vue'
-import FoundTv from './FoundTv.vue'
-import AppLoader from './AppLoader.vue'
+import FoundMovies from './FoundMovies.vue';
+import FoundTv from './FoundTv.vue';
 import {store} from '../store.js';
 import axios from 'axios';
 export default {
@@ -16,7 +15,6 @@ export default {
     components:{
         SearchBar,
         FoundMovies,
-        AppLoader,
         FoundTv,
     },
     
@@ -78,10 +76,7 @@ export default {
     <div class="serieTv">
         <FoundTv/>
     </div>
-    
 </div>
-
-<!-- <AppLoader v-else /> -->
 </template>
 
 <style scoped>

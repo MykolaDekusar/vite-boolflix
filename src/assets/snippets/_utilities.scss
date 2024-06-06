@@ -1,5 +1,46 @@
 // flag dimensions setup
-
 .languageFlag {
     width: 20px;
 }
+
+// CARD SETUP
+.card {
+    display: flex;
+    width: 350px;
+    height: 550px;
+    background-color: black;
+    margin: 0 0 2rem 0;
+    position: relative;
+}
+
+.card .cover-img {
+    object-fit:cover;
+}
+
+// CARD HOVER
+.card-data {
+    display: none;
+}
+
+.card:hover .cover-img{
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+.card:hover .card-data {
+    animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
