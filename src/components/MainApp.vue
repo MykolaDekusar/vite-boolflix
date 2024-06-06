@@ -29,6 +29,7 @@ export default {
                     language:this.store.selectedLanguage,
                 }
             }).then(results =>{
+                this.found=false;
                 this.store.foundMovies=[];//resetting search
                 for(let i =0; i< results.data.results.length;i++ ){
                     const temp = results.data.results[i];
@@ -42,27 +43,28 @@ export default {
                 }
                     this.found=true;
             })},
-            searchTv(){
-            axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
-                params: {
-                    api_key:this.store.apiSettings.api_Key,
-                    language:this.store.selectedLanguage,
-                    query:this.store.searchInput,
-                }
-            }).then(results =>{
-                this.store.foundTv=[];//resetting search
-                for(let i =0; i< results.data.results.length;i++ ){
-                    const temp = results.data.results[i];
-                    this.store.foundTv.push({
-                        title:temp.name,
-                        originalTitle:temp.original_name, 
-                        originalLanguage:temp.original_language, 
-                        averageVote:temp.vote_average,
-                        imagePath:temp.poster_path,
-                        });
-                }
-                    this.found=true;
-            })},
+        searchTv(){
+        axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
+            params: {
+                api_key:this.store.apiSettings.api_Key,
+                language:this.store.selectedLanguage,
+                query:this.store.searchInput,
+            }
+        }).then(results =>{
+            this.found=false;
+            this.store.foundTv=[];//resetting search
+            for(let i =0; i< results.data.results.length;i++ ){
+                const temp = results.data.results[i];
+                this.store.foundTv.push({
+                    title:temp.name,
+                    originalTitle:temp.original_name, 
+                    originalLanguage:temp.original_language, 
+                    averageVote:temp.vote_average,
+                    imagePath:temp.poster_path,
+                    });
+            }
+                this.found=true;
+        })},
     }
 }
 </script>
@@ -87,7 +89,5 @@ export default {
     display: flex;
     justify-content: center;
     gap: 50px;
-    
 }
-
 </style>
