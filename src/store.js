@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 export const store = reactive({
   selectedLanguage: "it-IT",
-  searchInput: "",
+  searchInput: "Marvel",
   foundMovies: [],
   foundTv: [],
   apiSettings: {

@@ -44,6 +44,7 @@ export default {
                         });
                 }
                     this.found=true;
+                    
             })},
         searchTv(){
         axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
@@ -65,8 +66,13 @@ export default {
                     imagePath:temp.poster_path,
                     });
             }
+                
                 this.found=true;
         })},
+    },
+    mounted(){
+        this.searchMovies();
+        this.searchTv();
     }
 }
 </script>
