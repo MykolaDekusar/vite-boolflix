@@ -15,14 +15,14 @@ body {
 // CARD SETUP
 .card {
     display: flex;
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 400px;
     background-color: black;
     position: relative;
 }
 
 .card .cover-img {
-    object-fit:cover;
+    object-fit: cover;
 }
 
 // CARD HOVER
