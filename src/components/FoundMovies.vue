@@ -14,7 +14,7 @@ export default {
         },
         starCalc(number){
             if(number === 0)return "Nessun Voto";
-            const stars= Math.ceil(number/2);
+            const stars= Math.round(number/2);
             return stars;
         },
         emptyStars(number){
@@ -30,10 +30,8 @@ export default {
 </script>
 
 <template>
-    <h2>Film</h2>
         <!-- ciclo per ogni oggetto nell'array di film trovati -->
-    <div v-for="data in store.foundMovies" v-show="!(data.imagePath===null)">
-        <div class="card">
+    <div draggable="false" class="card" v-for="data in store.foundMovies" v-show="!(data.imagePath===null)">
         <img class="cover-img" :src="store.apiSettings.imageData+data.imagePath" :alt="data.title">
             <div class="card-data">
                 <h3>Titolo: {{ data.title }}</h3>
@@ -46,11 +44,5 @@ export default {
                 </div>
                 <p v-else>Nessun Voto</p>
             </div>
-        </div>
     </div>
 </template>
-<style scoped>
-h2 {
-    text-align: center;
-}
-</style>

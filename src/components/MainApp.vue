@@ -3,6 +3,7 @@ import SearchBar from './SearchBar.vue';
 import FoundMovies from './FoundMovies.vue';
 import FoundTv from './FoundTv.vue';
 import {store} from '../store.js';
+import { dragscroll } from 'vue-dragscroll';
 import axios from 'axios';
 export default {
     name:"MainApp",
@@ -17,6 +18,9 @@ export default {
         FoundMovies,
         FoundTv,
     },
+    directives: {
+        dragscroll,
+  },
     
     methods:{
         searchMovies(){
@@ -69,20 +73,32 @@ export default {
 
 <template>
 <SearchBar @cercaFilm="searchMovies" @cercaTv="searchTv"/>
-<div class="media" v-show="found">
-    <div class="film">
-        <FoundMovies/>
-    </div>
-    <div class="serieTv">
-        <FoundTv/>
+<div class="container" ondragstart="return false;" ondrop="return false;">
+    <div class="media" v-show="found">
+        <h2>Films</h2>
+        <div v-dragscroll class="film"  >
+            <FoundMovies/>
+        </div>
+        <h2>Series</h2>
+        <div v-dragscroll class="serieTv">
+            <FoundTv/>
+        </div>
     </div>
 </div>
 </template>
 
 <style scoped>
-.media {
+
+h2 {
+    font-size: 3rem;
+    margin-top: 3rem;
+    color: white;
+}
+.film,
+.serieTv {
     display: flex;
-    justify-content: center;
-    gap: 50px;
+    gap: 2rem;
+    overflow-x: scroll;
+    overflow: hidden;
 }
 </style>

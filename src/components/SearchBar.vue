@@ -12,15 +12,22 @@ export default {
 </script>
 
 <template>
+<header>
+    <div class="container">
     <div class="row">
         <div class="logo">boolflix</div>
-    <div class="search">
-        <input @keyup.enter="$emit('cercaFilm'), $emit('cercaTv')" v-model="store.searchInput" type="text" placeholder="Inserisci il film che vuoi cercare">
-        <button @click="$emit('cercaFilm'), $emit('cercaTv')">Cerca</button>
+        <div class="search">
+            <input @keyup.enter="$emit('cercaFilm'), $emit('cercaTv')" v-model="store.searchInput" type="text" placeholder="Che cosa vuoi guardare?">
+            <button @click="$emit('cercaFilm'), $emit('cercaTv')">Cerca</button>
+        </div>
     </div>
-    </div>
+</div>
+</header>
 </template>
 <style scoped>
+header {
+    background-color: black;
+}
 .logo {
     text-transform: uppercase;
     font-size: 5rem;
@@ -32,8 +39,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    background-color: black;
-    padding: 0 3rem;
 }
 
 .search input {

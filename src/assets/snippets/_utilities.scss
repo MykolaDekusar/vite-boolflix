@@ -1,15 +1,23 @@
+body {
+    padding-bottom: 3rem;
+    user-select: none;
+}
 // flag dimensions setup
 .languageFlag {
     width: 20px;
 }
 
+// CONTAINER SETTINGS
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 // CARD SETUP
 .card {
     display: flex;
-    width: 350px;
-    height: 550px;
+    width: 200px;
+    height: 300px;
     background-color: black;
-    margin: 0 0 2rem 0;
     position: relative;
 }
 
