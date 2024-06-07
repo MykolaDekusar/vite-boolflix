@@ -9,7 +9,7 @@ body {
 
 // CONTAINER SETTINGS
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 // CARD SETUP
@@ -52,3 +52,17 @@ body {
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+
+//   PAGE NAVIGATION SETUP
+
+.navigate-movie,
+.navigate-tv{
+    text-align: center;
+    button {
+        border: 1px solid red;
+        color: white;
+        background-color: black;
+        padding: 0.5rem 1rem;
+        margin: 1rem;
+    }
+}

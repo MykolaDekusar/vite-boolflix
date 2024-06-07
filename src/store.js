@@ -4,6 +4,8 @@ export const store = reactive({
   searchInput: "Marvel",
   foundMovies: [],
   foundTv: [],
+  moviePage: 1,
+  tvPage: 1,
   apiSettings: {
     api_Key: "62e10cf8fb49cb3293f74ec81996598e",
     mainApi: "https://api.themoviedb.org/3/",

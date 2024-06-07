@@ -2,6 +2,8 @@
 import SearchBar from './SearchBar.vue';
 import FoundMovies from './FoundMovies.vue';
 import FoundTv from './FoundTv.vue';
+import NavigateMovies from './NavigateMovies.vue';
+import NavigateTv from './NavigateTv.vue';
 import {store} from '../store.js';
 import { dragscroll } from 'vue-dragscroll';
 import axios from 'axios';
@@ -17,6 +19,8 @@ export default {
         SearchBar,
         FoundMovies,
         FoundTv,
+        NavigateMovies,
+        NavigateTv,
     },
     directives: {
         dragscroll,
@@ -29,6 +33,7 @@ export default {
                     api_key:this.store.apiSettings.api_Key,
                     query:this.store.searchInput,
                     language:this.store.selectedLanguage,
+                    page:this.store.moviePage,
                 }
             }).then(results =>{
                 this.found=false;
@@ -43,15 +48,15 @@ export default {
                         imagePath:temp.poster_path,
                         });
                 }
-                    this.found=true;
-                    
+                    this.found=true;       
             })},
         searchTv(){
         axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
             params: {
                 api_key:this.store.apiSettings.api_Key,
-                language:this.store.selectedLanguage,
                 query:this.store.searchInput,
+                language:this.store.selectedLanguage,
+                page:this.store.tvPage,
             }
         }).then(results =>{
             this.found=false;
@@ -65,8 +70,7 @@ export default {
                     averageVote:temp.vote_average,
                     imagePath:temp.poster_path,
                     });
-            }
-                
+            }  
                 this.found=true;
         })},
     },
@@ -85,16 +89,18 @@ export default {
         <div v-dragscroll class="film"  >
             <FoundMovies/>
         </div>
+        <!-- NAV BAR MOVIES -->
+        <NavigateMovies @cercaFilm="searchMovies"/>
         <h2>Series</h2>
         <div v-dragscroll class="serieTv">
             <FoundTv/>
         </div>
+        <NavigateTv @cercaSerie="searchTv"/>
     </div>
 </div>
 </template>
 
 <style scoped>
-
 h2 {
     font-size: 3rem;
     margin-top: 3rem;

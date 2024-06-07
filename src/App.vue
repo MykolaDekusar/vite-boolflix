@@ -6,7 +6,6 @@ export default {
         MainApp,
     }, 
 }
-
 </script>
 
 <template>

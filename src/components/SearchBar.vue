@@ -54,7 +54,7 @@ header {
     width: 50px;
     border:1px solid red;
     border-radius: 0;
-    background-color: rgb(95, 95, 95);
+    background-color: rgb(36, 36, 36);
     color: white;
 }
 </style>

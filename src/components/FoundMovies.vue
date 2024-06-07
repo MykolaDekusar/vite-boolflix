@@ -18,10 +18,8 @@ export default {
             return stars;
         },
         emptyStars(number){
-            console.log(number)
             let temp = 5;
             if(temp-number > 0){
-                console.log(temp);
                 return temp-number;
             }else return 0;
         },
