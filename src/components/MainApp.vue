@@ -13,6 +13,8 @@ export default {
         return {
             store,
             found:false,
+            filmPages:null,
+            tvPages:null,
         }
     },
     components:{
@@ -28,6 +30,8 @@ export default {
     
     methods:{
         searchMovies(){
+            if(this.store.searchInput=== '') this.store.searchInput= "Marvel";
+            if(this.store.moviePage>this.filmPages) this.store.moviePage=1;
             axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[0], {
                 params: {
                     api_key:this.store.apiSettings.api_Key,
@@ -36,6 +40,9 @@ export default {
                     page:this.store.moviePage,
                 }
             }).then(results =>{
+                this.filmPages=results.data.total_pages;
+                console.log(results.data.total_pages);
+                console.log(this.store.moviePage);
                 this.found=false;
                 this.store.foundMovies=[];//resetting search
                 for(let i =0; i< results.data.results.length;i++ ){
@@ -51,6 +58,8 @@ export default {
                     this.found=true;       
             })},
         searchTv(){
+        if(this.store.searchInput=== '') this.store.searchInput= "Marvel";
+        if(this.store.tvPage>this.tvPages) this.store.tvPage=1;
         axios.get(this.store.apiSettings.mainApi + this.store.apiSettings.search + this.store.apiSettings.searchType[1], {
             params: {
                 api_key:this.store.apiSettings.api_Key,
@@ -60,6 +69,7 @@ export default {
             }
         }).then(results =>{
             this.found=false;
+            this.tvPages=results.data.total_pages;
             this.store.foundTv=[];//resetting search
             for(let i =0; i< results.data.results.length;i++ ){
                 const temp = results.data.results[i];

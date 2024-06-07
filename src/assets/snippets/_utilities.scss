@@ -9,20 +9,19 @@ body {
 
 // CONTAINER SETTINGS
 .container {
-    max-width: 1400px;
+    max-width: 1380px;
     margin: 0 auto;
 }
 // CARD SETUP
 .card {
     display: flex;
-    width: 250px;
-    height: 400px;
     background-color: black;
     position: relative;
 }
 
 .card .cover-img {
-    object-fit: cover;
+    width: 250px;
+    height: 400px;
 }
 
 // CARD HOVER
